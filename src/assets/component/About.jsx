@@ -1,21 +1,60 @@
 import { NavLink } from "react-router-dom"
 import imag from "./testimo.jpg"
+import Skills from "./events"
 
 
 function About(){
     return <>
 
-          <div className="sm:flex bg-sky-300 pl-10 justify-between py-6">
-          <h1 className="text-white text-2xl ">portfolio</h1>
-          <ul className="flex gap-5 mr-10 pl-10 text-xl">
-          <NavLink to="/"><li>home </li></NavLink>
-          <NavLink to="/About"><li>aboutMe </li></NavLink>
-          <NavLink to="/Contact"><li>contact </li></NavLink>
-            <div>
-              <button className="bg-white text-black px-9 py-2 rounded-lg">LogIn</button>
-            </div>
+          <div className="sm:flex bg-sky-500 pl-10 justify-between py-6 items-center">
+        <h1 className="text-white text-2xl font-bold">Portfolio</h1>
+
+        <ul className="flex gap-8 mr-10 text-lg font-medium">
+          <li>
+            <NavLink 
+              to="/" 
+              className={({ isActive }) =>isActive ? "text-blue-600 font-bold border-b-2 border-blue-600" : "text-white hover:text-blue-200 transition-colors duration-300"}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/About" 
+              className={({ isActive }) =>
+                isActive 
+                  ? "text-blue-600 font-bold border-b-2 border-blue-600" 
+                  : "text-white hover:text-blue-200 transition-colors duration-300"
+              }
+            >
+              About Me
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/Projects" 
+              className={({ isActive }) =>
+                isActive 
+                  ? "text-blue-600 font-bold border-b-2 border-blue-600" 
+                  : "text-white hover:text-blue-200 transition-colors duration-300"
+              }
+            >
+              Projects
+            </NavLink>
+          </li>
+          <li><NavLink to="/Blog" className={({ isActive }) =>isActive ? "text-blue-600 font-bold border-b-2 border-blue-600" : "text-white hover:text-blue-200 transition-colors duration-300"}>Blog</NavLink></li>
+
+          <li>
+            <NavLink 
+              to="/Contact" 
+              className={({ isActive }) =>
+                isActive 
+                  ? "text-blue-600 font-bold border-b-2 border-blue-600" 
+                  : "text-white hover:text-blue-200 transition-colors duration-300"
+              }
+            >
+              Contact
+            </NavLink>
+          </li>
         </ul>
-    </div>
+      </div>
     <div className="flex flex-col md:flex-row items-center justify-around gap-10 pt-16 px-5 bg-gradient-to-br from-white to-gray-100">
       <div className="max-w-xl">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -40,61 +79,7 @@ function About(){
     
        </div>
 
-      <div className="bg-gray-100 py-16 px-6 md:px-24">
-     <h2 className="text-3xl font-bold text-center text-gray-800 mb-12"> My Skills</h2>
-  
-     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
-    
-     <div className="w-full max-w-md">
-      <p className="mb-1 text-gray-700 font-medium">HTML</p>
-      <div className="bg-gray-300 h-4 rounded-full overflow-hidden">
-        <div className="bg-green-500 h-full text-xs text-white text-center" style={{ width: "100%" }}>
-          100%
-        </div>
-      </div>
-      </div>
-
-    <div className="w-full max-w-md">
-      <p className="mb-1 text-gray-700 font-medium">CSS</p>
-      <div className="bg-gray-300 h-4 rounded-full overflow-hidden">
-        <div className="bg-red-500 h-full text-xs text-white text-center" style={{ width: "80%" }}>
-          80%
-        </div>
-      </div>
-    </div>
-
-    {/* Tailwind CSS */}
-    <div className="w-full max-w-md">
-      <p className="mb-1 text-gray-700 font-medium">Tailwind CSS</p>
-      <div className="bg-gray-300 h-4 rounded-full overflow-hidden">
-        <div className="bg-purple-500 h-full text-xs text-white text-center" style={{ width: "99%" }}>
-          99%
-        </div>
-      </div>
-    </div>
-
-    {/* JavaScript */}
-    <div className="w-full max-w-md">
-      <p className="mb-1 text-gray-700 font-medium">JavaScript</p>
-      <div className="bg-gray-300 h-4 rounded-full overflow-hidden">
-        <div className="bg-pink-500 h-full text-xs text-white text-center" style={{ width: "50%" }}>
-          50%
-        </div>
-      </div>
-    </div>
-
-    {/* React */}
-    <div className="w-full max-w-md">
-      <p className="mb-1 text-gray-700 font-medium">React</p>
-      <div className="bg-gray-300 h-4 rounded-full overflow-hidden">
-        <div className="bg-yellow-400 h-full text-xs text-white text-center" style={{ width: "50%" }}>
-          50%
-        </div>
-      </div>
-    </div>
-
-   </div>
-  </div>
+      <Skills/>
      <div className="sm:flex bg-white  gap-6 ml-2 mr-5 mt-10 mb-5 py-4 space-y-2">
 
     <div className="hover:bg-red-400 w-full md:w-1/3 text-black rounded-lg p-4 px-4 shadow-lg ml-4 transition duration-300 hover:text-white hover:scale-105 cursor-pointer">

@@ -1,22 +1,90 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import imag from "./testimo.jpg"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 function Contact (){
+  const [data, setData]= useState([])
+    const[name, setname]= useState("")
+    const[email, setemail]= useState("")
+    const[massage, setmassage]= useState("")
+    
+    const navigate = useNavigate()
+
+    const handlereadData = () =>{
+        axios.get("http://localhost:9000/read/post").then ((res)=>{
+            setData(res.data)
+        })
+    }
+
+    useEffect(()=>{
+        handlereadData()
+    }, [])
+
+    const handlepost =async (e)=>{
+        e.preventDefault()
+        await axios.post ("http://localhost:9000/create/post", {
+        name,
+        email,
+        massage ,
+        })
+        handlereadData()
+        navigate ("/Data")
+    }
+    
     return <>
-     <div className="bg-sky-300 flex  pl-10 justify-between py-6">
-          <h1 className="text-white text-2xl ">portfoli</h1>
-          <ul className="flex gap-5 mr-10 pl-10 text-xl">
-          <NavLink to="/"><li>home </li></NavLink>
-          <NavLink to="/About"><li>about me </li></NavLink>
-          <NavLink to="/Contact"><li>contact </li></NavLink>
-            <div>
-              <button className="bg-white text-black px-9 py-2 rounded-lg">LogIn</button>
-            </div>
+      <div className="sm:flex bg-sky-500 pl-10 justify-between py-6 items-center">
+        <h1 className="text-white text-2xl font-bold">Portfolio</h1>
+
+        <ul className="flex gap-8 mr-10 text-lg font-medium">
+          <li>
+            <NavLink 
+              to="/" 
+              className={({ isActive }) =>isActive ? "text-blue-600 font-bold border-b-2 border-blue-600" : "text-white hover:text-blue-200 transition-colors duration-300"}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/About" 
+              className={({ isActive }) =>
+                isActive 
+                  ? "text-blue-600 font-bold border-b-2 border-blue-600" 
+                  : "text-white hover:text-blue-200 transition-colors duration-300"
+              }
+            >
+              About Me
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/Projects" 
+              className={({ isActive }) =>
+                isActive 
+                  ? "text-blue-600 font-bold border-b-2 border-blue-600" 
+                  : "text-white hover:text-blue-200 transition-colors duration-300"
+              }
+            >
+              Projects
+            </NavLink>
+          </li>
+          <li><NavLink to="/Blog" className={({ isActive }) =>isActive ? "text-blue-600 font-bold border-b-2 border-blue-600" : "text-white hover:text-blue-200 transition-colors duration-300"}>Blog</NavLink></li>
+ 
+          <li>
+            <NavLink 
+              to="/Contact" 
+              className={({ isActive }) =>
+                isActive 
+                  ? "text-blue-600 font-bold border-b-2 border-blue-600" 
+                  : "text-white hover:text-blue-200 transition-colors duration-300"
+              }
+            >
+              Contact
+            </NavLink>
+          </li>
         </ul>
-    </div>
+      </div>
 
   
-<div className="flex items-center justify-center min-h-screen bg-gray-100">
+  <div className="flex items-center justify-center min-h-screen bg-gray-100">
   <div className="bg-white px-6 py-8 rounded-2xl shadow-lg text-center w-72">
     <div className="flex justify-center mb-4">
       <img
@@ -56,12 +124,15 @@ function Contact (){
         className="text-green-600 hover:underline text-lg">WhatsApp Number</a>
       </div>
      </div>
+     
 
+     {
+
+     }
   <form className="space-y-4">
     <div>
-      <label className="block mb-1 text-gray-700">Your Name</label>
-      <input
-        type="text"
+      <label className="block mb-1 text-gray-700">Email</label>
+      <input value={name} onChange={(e)=> setname(e.target.value)} type="text"
         placeholder="Enter your name"
         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
@@ -69,7 +140,7 @@ function Contact (){
 
     <div>
       <label className="block mb-1 text-gray-700">Your Email</label>
-      <input
+      <input value={email} onChange={(e)=> setemail(e.target.value)}
         type="email"
         placeholder="Enter your email"
         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -77,16 +148,13 @@ function Contact (){
     </div>
 
     <div>
-      <label className="block mb-1 text-gray-700">Your Message</label><textarea
-        rows="4"
+      <label className="block mb-1 text-gray-700">Your Message</label><textarea value={massage} onChange={(e)=> setmassage(e.target.value)}
+        rows="4" 
         placeholder="Type your message..."
         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
     </div>
 
-    <button
-      type="submit"
-      className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-    >
+    <button onClick={handlepost} type="submit"className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
       Send Message
     </button>
   </form>

@@ -1,56 +1,79 @@
-import { useState } from "react";
-import img from "./isha.png";
-import imag from "./image.png";
-import image from "./image copy.png";
-import imagee from "./image copy 2.png";
+import { motion } from "framer-motion";
+import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaFigma, FaGithub } from "react-icons/fa";
+import { SiTailwindcss, SiMongodb, SiExpress } from "react-icons/si";
 
-function Img() {
-  const [showAll, setShowAll] = useState(false);
-
-  const images = [
-    { src: img, title: "Event 1" },
-    { src: imag, title: "Event 2" },
-    { src: image, title: "Event 3" },
-    { src: imagee, title: "Event 4" },
-    { src: img, title: "Event 5" },
-    { src: imag, title: "Event 6" },
-    { src: image, title: "Event 7" },
-    { src: imagee, title: "Event 8" },
-    { src: img, title: "Event 9" },
-    { src: imag, title: "Event 10" },
-  ];
-
-  const visibleImages = showAll ? images : images.slice(0, 5);
+export default function Skills() {
+  const skills = {
+    design: [
+      { name: "Figma", icon: <FaFigma className="text-pink-500 text-4xl" />, value: 80 },
+    ],
+    frontend: [
+      { name: "HTML", icon: <FaHtml5 className="text-orange-600 text-4xl" />, value: 100 },
+      { name: "CSS", icon: <FaCss3Alt className="text-blue-600 text-4xl" />, value: 85 },
+      { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-500 text-4xl" />, value: 90 },
+      { name: "React", icon: <FaReact className="text-sky-500 text-4xl animate-spin-slow" />, value: 80 },
+    ],
+    backend: [
+      { name: "Node.js", icon: <FaNodeJs className="text-green-600 text-4xl" />, value: 75 },
+      { name: "Express", icon: <SiExpress className="text-gray-700 text-4xl" />, value: 65 },
+    ],
+    tools: [
+      { name: "MongoDB", icon: <SiMongodb className="text-green-700 text-4xl" />, value: 70 },
+      { name: "GitHub", icon: <FaGithub className="text-gray-800 text-4xl" />, value: 90 },
+    ],
+  };
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-gray-800">Events</h1>
-        <button
-          onClick={() => setShowAll(!showAll)}
-          className="text-blue-600 font-medium cursor-pointer hover:underline"
-        >
-          {showAll ? "Back" : "View All"}
-        </button>
-      </div>
+    <div className="bg-gray-100 py-20 px-6 md:px-16">
+      <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">
+        Tech Stacks
+      </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {visibleImages.map((item, index) => (
-          <div
-            key={index}
-            className="bg-gray-200 rounded-lg px-4 py-3 hover:bg-red-200 text-center"
-          >
-            <img
-              className="h-36 w-44 object-cover rounded shadow mx-auto"
-              src={item.src}
-              alt={item.title}
-            />
-            <h1 className="mt-2 text-sm text-gray-700">{item.title}</h1>
-          </div>
-        ))}
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+        <SkillCard title="Web Design" items={skills.design} delay={0} />
+        <SkillCard title="Frontend" items={skills.frontend} delay={0.2} />
+        <SkillCard title="Backend" items={skills.backend} delay={0.4} />
+        <SkillCard title="Database & Tools" items={skills.tools} delay={0.6} />
       </div>
     </div>
   );
 }
 
-export default Img;
+// Reusable Card Component
+function SkillCard({ title, items, delay }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay }}
+      whileHover={{ scale: 1.05 }}
+      className="bg-white shadow-xl rounded-2xl p-8 hover:shadow-2xl transition"
+    >
+      <h3 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
+        {title}
+      </h3>
+      <div className="space-y-6">
+        {items.map((skill, i) => (
+          <motion.div key={i} whileHover={{ scale: 1.02 }} className="flex flex-col group">
+            <div className="flex items-center gap-3 mb-2">
+              {skill.icon}
+              <span className="font-medium text-gray-700">{skill.name}</span>
+              <span className="ml-auto text-sm font-semibold text-gray-600">
+                {skill.value}%
+              </span>
+            </div>
+            <div className="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
+              <motion.div
+                className="h-3 rounded-full group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-pink-500"
+                style={{ backgroundColor: "#6366f1" }}
+                initial={{ width: 0 }}
+                whileInView={{ width: `${skill.value}%` }}
+                transition={{ duration: 1, delay: i * 0.2 }}
+              />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
