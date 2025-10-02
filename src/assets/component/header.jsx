@@ -108,7 +108,7 @@ function Header() {
             </motion.button>
 
             {/* Social Media Icons */}
-            <div className="flex gap-4 text-xl text-gray-700">
+            <div className="flex gap-4 text-3xl pb-3  text-gray-700">
               <a href="https://wa.me/252619569961" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition">
                 <FaWhatsapp />
               </a>

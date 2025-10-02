@@ -24,7 +24,7 @@ function Data(){
 
         <aside className="w-[100%] h-[100%] bg-yellow-500 p-6 flex flex-col gap-6">
         <div className="flex items-center gap-3 text-2xl font-bold text-gray-800">
-        <i className="fas fa-tachometer-alt text-xl"></i><span>Data</span>
+        <i ti className="fas fa-tachometer-alt text-xl"></i><span>Data</span>
 
         </div>
         <div className="flex items-center gap-3 text-lg cursor-pointer hover:text-teal-700 transition">
