@@ -4,10 +4,9 @@ import { motion } from "framer-motion";
 import Img from "./events";
 import img from "./isha.png";
 import imag from "./testimo.jpg";
-import axios from "axios";
 import Skills from "./events";
 
-import { FaWhatsapp, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaWhatsapp,  FaLinkedinIn, FaTwitter,  FaGithub, FaInstagram } from "react-icons/fa";
 
 function Header() {
   return (
@@ -112,14 +111,17 @@ function Header() {
               <a href="https://wa.me/252619569961" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition">
                 <FaWhatsapp />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition">
-                <FaFacebookF />
-              </a>
+              {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition">
+                <FaInstagram />
+              </a> */}
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
                 <FaLinkedinIn />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition">
                 <FaTwitter />
+              </a>
+              <a href="https://github.com/Aisha-mohaa" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition">
+                <FaGithub />
               </a>
             </div>
           </div>
@@ -230,13 +232,13 @@ function Header() {
       <a href="https://wa.me/252619569961" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
         <FaWhatsapp />
       </a>
-      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
+      {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
         <FaFacebookF />
-      </a>
+      </a> */}
       <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition">
         <FaLinkedinIn />
       </a>
-      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition">
+      <a href="twitter.com/AishaM41728" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition">
         <FaTwitter />
       </a>
     </div>
